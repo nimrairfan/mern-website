@@ -1,0 +1,51 @@
+import axios from "axios";
+import BASE_URI from "../../core";
+import ActionTypes from "../constant";
+
+const LoginAction = (data) => {
+  return (dispatch) => {
+    dispatch({
+      type: ActionTypes.USER_LOGIN_REQ,
+    });
+
+    axios
+      .post(`${BASE_URI}login`, data)
+      .then((res) => {
+        console.log(res ,"actionnn")
+             if (res.data.error) {
+          console.log(res, "action error");
+
+          dispatch({
+            type: ActionTypes.USER_LOGIN_FAIL,
+            payload: res.data,
+          });
+        } else {
+          localStorage.setItem("user", JSON.stringify(res.data.data));
+          dispatch({
+            type: ActionTypes.USER_LOGIN_SUCCESS,
+            payload: res.data,
+          });
+        }
+        //   dispatch({
+        //     type: ActionTypes.USER_LOGIN_SUCCESS,
+        //     payload: res.data,
+        //   });
+        
+        //  else {
+        //   localStorage.setItem("user", JSON.stringify(res.data.data));
+        //   dispatch({
+        //     type: ActionTypes.USER_LOGIN_SUCCESS,
+        //     payload: res.data,
+        //   });
+        // }
+      })
+      .catch((err) => {
+        dispatch({
+          type: ActionTypes.USER_LOGIN_FAIL,
+          payload: err.data,
+        });
+      });
+  };
+};
+
+export { LoginAction };

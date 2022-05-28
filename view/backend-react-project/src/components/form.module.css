@@ -1,0 +1,28 @@
+.maindiv{
+    border: 5px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    width: 50%;
+    margin:100px auto;
+}
+.maindiv input{
+    width: 60%;
+    margin: 5px auto;
+    padding: 10px;
+    border-top:none ;
+    border-right:none;
+    border-left: none;
+    border-bottom: 3px solid gray;
+}
+.maindiv button{
+    width: 15%;
+    margin: 10px auto;
+    padding: 10px;
+    background-color: palevioletred;
+    border-radius: 20px;
+    border: 2px solid whitesmoke;
+    color: whitesmoke;
+}
